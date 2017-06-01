@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  background: #FFF;
+  padding: 2em 3em;
+  font-family: sans-serif;
+  font: 300 20px 'Helvetica Neue';
+  color: #444;
+}
+.App {
+  width: 50%;
+  margin: 0 auto;
+}
+.App > h2{
+    font: 300 30px 'Helvetica Neue';
+    margin-bottom: 5px;
+    color: #55ACEE;
+}
+.App > p {
+    margin-top: 0;
+    font: 300 20px 'Helvetica Neue';
+    color: #777;
+}
+input,
+input:focus {
+    padding: 16px;
+    border-radius: 4px;
+    font: 300 18px 'Helvetica Neue';
+    background: #FFF;
+    border: 2px solid #EEE;
+    color: #444;
+    outline: 0;
+    width: 95%;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+ul > li {
+    -webkit-transition: all .3s;
+    display: block;
+    background: #E3F0FA;
+    padding: 20px 24px;
+    border-radius: 4px;
+    font: 300 18px 'Helvetica Neue';
+    margin-top: 16px;
+    color: #55ACEE;
+}
+ul > li:hover {
+    background: #D2E7F7;
+    padding: 20px 30px;
+    cursor: pointer;
+    color: #55ACEE;
+}
+
+ul > li.done {
+    text-decoration: line-through;
+    background: #55ACEE;
+    color: #FFF;
+}
