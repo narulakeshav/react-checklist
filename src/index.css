@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Work+Sans:700');
+
 body {
   margin: 0;
   background: #FFF;
   padding: 2em 3em;
   font-family: sans-serif;
-  font: 300 20px 'Helvetica Neue';
+  font: 300 20px 'Open Sans';
   color: #444;
 }
 .App {
@@ -11,49 +13,66 @@ body {
   margin: 0 auto;
 }
 .App > h2{
-    font: 300 30px 'Helvetica Neue';
-    margin-bottom: 5px;
-    color: #55ACEE;
+    font: 700 35px 'Work Sans';
+    margin-bottom: 0px;
+    color: #5D6569;
 }
-.App > p {
-    margin-top: 0;
-    font: 300 20px 'Helvetica Neue';
-    color: #777;
+.App > .stats {
+  display: inline-block;
+  float: left;
+  font: 400 16px 'Open Sans';
+  margin-right: 20px;
+  color: #888;
+  margin-bottom: 20px;
+}
+.App > .stats > span {
+  font: 700 18px 'Work Sans';
+  color: #00CDEA;
 }
 input,
 input:focus {
-    padding: 16px;
+    transition: .4s all;
+    padding: 18px 20px;
     border-radius: 4px;
-    font: 300 18px 'Helvetica Neue';
-    background: #FFF;
-    border: 2px solid #EEE;
-    color: #444;
+    font: 400 16px 'Open Sans';
+    background: #F8F8F8;
+    border: none;
+    color: #666;
     outline: 0;
-    width: 95%;
+    width: 93%;
+}
+::-webkit-input-placeholder {
+  color: #AAA;
 }
 ul {
     list-style: none;
+    border-radius: 2px;
     padding: 0;
+    box-shadow: 0 0 20px #EEE;
 }
 ul > li {
     -webkit-transition: all .3s;
     display: block;
-    background: #E3F0FA;
-    padding: 20px 24px;
-    border-radius: 4px;
-    font: 300 18px 'Helvetica Neue';
-    margin-top: 16px;
-    color: #55ACEE;
+    padding: 25px;
+    font: 400 16px 'Open Sans';
+    color: #666;
+    border-bottom: 2px solid transparent;
 }
 ul > li:hover {
-    background: #D2E7F7;
-    padding: 20px 30px;
+    background: #F8F8F8;
     cursor: pointer;
-    color: #55ACEE;
+    color: #444;
 }
 
 ul > li.done {
     text-decoration: line-through;
-    background: #55ACEE;
+    padding: 25px;
+    background: #00CDEA;
+    color: #FFF;
+    border-color: rgba(255,255,255,0.1);
+}
+ul > li.done:hover {
+    background: #02C5E0;
+    padding: 25px 30px;
     color: #FFF;
 }
