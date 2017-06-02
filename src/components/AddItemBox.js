@@ -6,7 +6,7 @@ class AddItemBox extends Component {
         // We use bind(this) to bind the event with the action
         return (
             <div className='AddItemBox'>
-                <input type='text' placeholder='add item' onKeyPress={this.onInputEnter.bind(this)}/>
+                <input type='text' placeholder='Add a task...' onKeyPress={this.onInputEnter.bind(this)}/>
             </div>
         )
     }
