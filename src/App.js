@@ -25,7 +25,8 @@ class App extends Component {
         return (
             <div className="App">
                 <h2>Todo List</h2>
-                <p>Total Tasks: {this.state.items.length} | Completed: {this.state.finishedItems}</p>
+                <p className="stats"><span>{this.state.items.length}</span>  Total Tasks</p>
+                <p className="stats"><span>{this.state.finishedItems} </span> Finished Tasks</p>
                 <AddItemBox addNewItem={this._addItem.bind(this)}/>
                 <ItemsList
                     items={this.state.items}
