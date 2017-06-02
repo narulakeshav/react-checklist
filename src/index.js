@@ -4,4 +4,5 @@ import App from './App';
 import './index.css';
 
 let todos = JSON.parse(localStorage.getItem('todos'));
-ReactDOM.render(<App todos={todos}/>, document.getElementById('app'));
+let finished = JSON.parse(localStorage.getItem('finished'));
+ReactDOM.render(<App todos={todos} finished={finished}/>, document.getElementById('app'));

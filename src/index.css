@@ -50,29 +50,80 @@ ul {
     padding: 0;
     box-shadow: 0 0 20px #EEE;
 }
-ul > li {
-    -webkit-transition: all .3s;
-    display: block;
-    padding: 25px;
-    font: 400 16px 'Open Sans';
-    color: #666;
-    border-bottom: 2px solid transparent;
-}
-ul > li:hover {
+ul > li:hover > .ItemDiv {
     background: #F8F8F8;
     cursor: pointer;
+}
+ul > li:hover > .ItemDiv > p {
     color: #444;
 }
-
-ul > li.done {
-    text-decoration: line-through;
-    padding: 25px;
-    background: #00CDEA;
-    color: #FFF;
-    border-color: rgba(255,255,255,0.1);
+ul > li:hover > .ItemDiv > button {
+  background: #FFF;
 }
-ul > li.done:hover {
+
+/* Styling for the List Div */
+ul > li > .ItemDiv {
+  -webkit-transition: all .3s;
+  padding: 10px 25px;
+  border-bottom: 2px solid transparent;
+}
+ul > li > .ItemDiv > * {
+  display: inline-block;
+}
+ul > li > .ItemDiv > p {
+  font: 400 16px 'Open Sans';
+  color: #666;
+}
+ul > li > .ItemDiv > .TaskOptions {
+  float: right;
+  position: relative;
+  top: 12px;
+}
+ul > li > .ItemDiv > .TaskOptions > button,
+ul > li > .ItemDiv > .TaskOptions > button:focus {
+  -webkit-transition: all .3s;
+  border: none;
+  background: #F5F5F5;
+  box-shadow: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  outline: 0;
+}
+ul > li > .ItemDiv > .TaskOptions > button:hover {
+  background: #FFF;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+ul > li > .ItemDiv > .TaskOptions > button > span {
+  color: #AAA;
+}
+
+/* When Marked As Done/Complete */
+ul > li.done > .ItemDiv {
+    border-color: rgba(255,255,255,0.1);
+    background: #00CDEA;
+}
+ul > li.done > .ItemDiv > p {
+  text-decoration: line-through;
+  color: #FFF;
+}
+ul > li.done > .ItemDiv > .TaskOptions > button {
+  background: rgba(255,255,255,0.3);
+}
+ul > li.done > .ItemDiv > .TaskOptions > button > span {
+  color: #FFF;
+}
+
+/* When Marked As Done/Complete is Hovered */
+ul > li.done:hover > .ItemDiv {
     background: #02C5E0;
-    padding: 25px 30px;
-    color: #FFF;
+    padding-left: 30px;
+}
+ul > li.done:hover > .ItemDiv > .TaskOptions  > button {
+  background: #FFF;
+  box-shadow: none;
+}
+ul > li.done:hover > .ItemDiv > .TaskOptions  > button > span {
+  color: #00CDEA;
 }
