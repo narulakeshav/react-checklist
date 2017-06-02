@@ -13,15 +13,17 @@ import './App.css';
 // use binds the addItem event so it changes the state in this comp
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log(props);
         this.state = {
-            items: [],
+            items: props.todos || [],
             finishedItems: 0
         };
     }
 
     render() {
+        this._updateFromLocalStorage();
         return (
             <div className="App">
                 <h2>Todo List</h2>
@@ -43,10 +45,17 @@ class App extends Component {
         this.setState({items: listItems});
     }
     _addToFinish() {
-        this.setState({finishedItems: ++this.state.finishedItems});
+        this.setState({
+            finishedItems: ++this.state.finishedItems
+        });
     }
     _removeFromFinish() {
-        this.setState({finishedItems: --this.state.finishedItems});
+        this.setState({
+            finishedItems: --this.state.finishedItems
+        });
+    }
+    _updateFromLocalStorage() {
+        localStorage.setItem('todos', JSON.stringify(this.state.items));
     }
 }
 
