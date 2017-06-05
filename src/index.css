@@ -4,28 +4,33 @@ body {
   margin: 0;
   background: #FFF;
   padding: 2em 3em;
-  font-family: sans-serif;
   font: 300 20px 'Open Sans';
-  color: #444;
 }
 .App {
   width: 50%;
   margin: 0 auto;
 }
-.App > h2{
+.App h2 {
     font: 700 35px 'Work Sans';
     margin-bottom: 0px;
     color: #5D6569;
 }
-.App > .stats {
+.App .stats,
+.App .stats-percent {
   display: inline-block;
-  float: left;
   font: 400 16px 'Open Sans';
   margin-right: 20px;
   color: #888;
   margin-bottom: 20px;
 }
-.App > .stats > span {
+.App .stats {
+  float: left;
+}
+.App .stats-percent {
+  float: right;
+}
+.App .stats span,
+.App .stats-percent span {
   font: 700 18px 'Work Sans';
   color: #00CDEA;
 }
@@ -50,37 +55,49 @@ ul {
     padding: 0;
     box-shadow: 0 0 20px #EEE;
 }
-ul > li:hover > .ItemDiv {
-    background: #F8F8F8;
+ul li {
+  transition: .3s all;
+  padding: 10px 25px;
+  background: #FFF;
+  border-bottom: 2px solid transparent;
+}
+ul > li > .ItemDiv,
+ul > li > .TaskOptions {
+  transition: .3s all;
+  display: inline-block;
+}
+ul li .ItemDiv {
+  min-width: 85%;
+  max-width: 85%;
+}
+ul li .TaskOptions {
+  width: 15%;
+  text-align: right;
+}
+ul li:hover {
+    background: #F5F5F5;
     cursor: pointer;
 }
-ul > li:hover > .ItemDiv > p {
+ul li:hover .ItemDiv p {
     color: #444;
 }
-ul > li:hover > .ItemDiv > button {
+ul li:hover .TaskOptions button {
   background: #FFF;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* Styling for the List Div */
-ul > li > .ItemDiv {
-  -webkit-transition: all .3s;
-  padding: 10px 25px;
-  border-bottom: 2px solid transparent;
-}
-ul > li > .ItemDiv > * {
-  display: inline-block;
-}
 ul > li > .ItemDiv > p {
   font: 400 16px 'Open Sans';
-  color: #666;
+  color: #5D6569;
 }
-ul > li > .ItemDiv > .TaskOptions {
+ul > li > .TaskOptions {
   float: right;
   position: relative;
   top: 12px;
 }
-ul > li > .ItemDiv > .TaskOptions > button,
-ul > li > .ItemDiv > .TaskOptions > button:focus {
+ul > li > .TaskOptions > button,
+ul > li > .TaskOptions > button:focus {
   -webkit-transition: all .3s;
   border: none;
   background: #F5F5F5;
@@ -90,17 +107,17 @@ ul > li > .ItemDiv > .TaskOptions > button:focus {
   border-radius: 50%;
   outline: 0;
 }
-ul > li > .ItemDiv > .TaskOptions > button:hover {
+ul > li > .TaskOptions > button:hover {
   background: #FFF;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
   cursor: pointer;
 }
-ul > li > .ItemDiv > .TaskOptions > button > span {
+ul > li > .TaskOptions > button > span {
   color: #AAA;
 }
 
 /* When Marked As Done/Complete */
-ul > li.done > .ItemDiv {
+ul > li.done {
     border-color: rgba(255,255,255,0.1);
     background: #00CDEA;
 }
@@ -108,22 +125,22 @@ ul > li.done > .ItemDiv > p {
   text-decoration: line-through;
   color: #FFF;
 }
-ul > li.done > .ItemDiv > .TaskOptions > button {
+ul > li.done > .TaskOptions > button {
   background: rgba(255,255,255,0.3);
 }
-ul > li.done > .ItemDiv > .TaskOptions > button > span {
+ul > li.done > .TaskOptions > button > span {
   color: #FFF;
 }
 
 /* When Marked As Done/Complete is Hovered */
-ul > li.done:hover > .ItemDiv {
+ul > li.done:hover {
     background: #02C5E0;
     padding-left: 30px;
 }
-ul > li.done:hover > .ItemDiv > .TaskOptions  > button {
+ul > li.done:hover > .TaskOptions  > button {
   background: #FFF;
   box-shadow: none;
 }
-ul > li.done:hover > .ItemDiv > .TaskOptions  > button > span {
+ul > li.done:hover > .TaskOptions  > button > span {
   color: #00CDEA;
 }
