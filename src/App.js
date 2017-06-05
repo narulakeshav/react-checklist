@@ -23,6 +23,7 @@ class App extends Component {
         };
         this._completeTask = this._completeTask.bind(this);
         this._updateListAfterDeletion = this._updateListAfterDeletion.bind(this);
+        this._addItem = this._addItem.bind(this);
     }
 
     render() {
@@ -34,7 +35,7 @@ class App extends Component {
                     list={todoList}
                     finished={this.state.finished}
                     percent={this.state.percentDone}/>
-                <AddItemBox addNewItem={this._addItem.bind(this)}/>
+                <AddItemBox addNewItem={this._addItem}/>
                 <ItemsList
                     items={todoList}
                     completeTask={this._completeTask}
@@ -86,6 +87,7 @@ class App extends Component {
         localStorage.setItem('todos', JSON.stringify(this.state.todoList));
     }
 
+    // Calculates % of completed tasks
     _percentCompletion() {
         let totalTasks = this.state.todoList.length,
             finishedTasks = this.state.finished,
@@ -96,6 +98,7 @@ class App extends Component {
         });
     }
 
+    // Updates list after deletion of a task
     _updateListAfterDeletion(todoList) {
         this.setState({ todoList }, () => {
             this._countFinishedTasks();
