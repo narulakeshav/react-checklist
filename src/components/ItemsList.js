@@ -3,8 +3,16 @@ import Item from './Item';
 import '../App.css';
 
 const ItemsList = (props) => {
+    let todos = props.items;
     const listItem = props.items.map((item) => {
-        return <Item name={item} key={item} finish={props.addToFinish} notFinish={props.removeFromFinish} />
+        return (
+            <Item
+                item={item}
+                key={todos.indexOf(item)}
+                list={todos}
+                completeTask={props.completeTask}
+                updateList={props.updateList} />
+        )
     });
     return (
         <div className="ItemsList">
