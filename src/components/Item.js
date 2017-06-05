@@ -1,27 +1,29 @@
 import React, {Component} from 'react';
+import ItemOptions from './ItemOptions';
 import '../App.css';
 
 class Item extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isDone: false,
-            setClass: ''
-        };
-    }
     render() {
-        const item = this.props.name;
-        return <li className={this.state.setClass} onClick={this._markDone.bind(this)} >{item}</li>
+        let name = this.props.item.task;
+        let completed = this.props.item.completed;
+        let listClass = (completed) ? 'done' : '';
+        return (
+            <li className={listClass}>
+                <div className="ItemDiv" onClick={this._markDone.bind(this)}>
+                    <p>{name}</p>
+                </div>
+                <ItemOptions
+                    item={this.props.item}
+                    todoList={this.props.list}
+                    updateList={this.props.updateList}/>
+            </li>
+        );
     }
 
     _markDone() {
         // Update States
-        const markDone = !this.state.isDone;
-        const updatedClass = (this.state.setClass === '') ? 'done' : '';
-        this.setState({ isDone: markDone, setClass: updatedClass });
-
-        // If done, increment count, else decrement
-        (markDone) ? this.props.finish() :  this.props.notFinish();
+        let currentTask = this.props.item;
+        this.props.completeTask(currentTask);
     }
 }
 
