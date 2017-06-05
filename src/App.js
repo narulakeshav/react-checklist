@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AddItemBox from './components/AddItemBox';
 import ItemsList from './components/ItemsList';
+import TodoStats from './components/TodoStats';
 import './App.css';
 
 // HOW IT WORKS
@@ -17,44 +18,51 @@ class App extends Component {
         super(props);
         this.state = {
             todoList: props.todos || [],
-            finished: props.finished || 0
+            finished: props.finished || 0,
+            percentDone: props.done || 0
         };
+        this._completeTask = this._completeTask.bind(this);
+        this._updateListAfterDeletion = this._updateListAfterDeletion.bind(this);
     }
 
     render() {
+        let todoList = this.state.todoList;
         return (
             <div className="App">
                 <h2>Todo List</h2>
-                <p className="stats"><span>{this.state.todoList.length}</span> Tasks</p>
-                <p className="stats"><span>{this.state.finished} </span> Completed</p>
+                <TodoStats
+                    list={todoList}
+                    finished={this.state.finished}
+                    percent={this.state.percentDone}/>
                 <AddItemBox addNewItem={this._addItem.bind(this)}/>
                 <ItemsList
-                    items={this.state.todoList}
-                    completeTask={this._completeTask.bind(this)}
-                    updateStorage={this._updateFromLocalStorage.bind(this)} />
+                    items={todoList}
+                    completeTask={this._completeTask}
+                    updateList={this._updateListAfterDeletion} />
             </div>
         );
     }
 
     // Adds item to app's 'items' state
     _addItem(item) {
-        let listItems = this.state.todoList;
+        let todoList = this.state.todoList;
         let task = { task: item, completed: false };
-        listItems.push(task);
-        this.setState({todoList: listItems});
-        this._countFinishedTasks();
+        todoList.push(task);
+        this.setState({ todoList }, () => {
+            this._countFinishedTasks();
+        });
     }
 
     // Marks a task as completed
-    _completeTask(task, status) {
+    _completeTask(task) {
         let listItems = this.state.todoList;
         for (var i = 0; i < listItems.length; i++) {
             if (listItems[i] === task) {
-                listItems[i].completed = status;
+                listItems[i].completed = !listItems[i].completed;
+                this._countFinishedTasks();
                 break;
             }
         }
-        this._countFinishedTasks();
     }
 
     // Counts Completed tasks and updates state and localstorage object
@@ -66,14 +74,32 @@ class App extends Component {
                 finished++;
             }
         }
-        localStorage.setItem('finished', finished);
-        this.setState({ finished });
-        this._updateFromLocalStorage();
+        this.setState({ finished }, () => {
+            localStorage.setItem('finished', finished);
+            this._updateFromLocalStorage();
+            this._percentCompletion();
+        });
     }
 
     // Stores todoList in localStorage object
     _updateFromLocalStorage() {
         localStorage.setItem('todos', JSON.stringify(this.state.todoList));
+    }
+
+    _percentCompletion() {
+        let totalTasks = this.state.todoList.length,
+            finishedTasks = this.state.finished,
+            percentDone = Math.floor((finishedTasks / totalTasks) * 100);
+        percentDone = isNaN(percentDone) ? 0 : percentDone;
+        this.setState({ percentDone }, () => {
+            localStorage.setItem('done', percentDone);
+        });
+    }
+
+    _updateListAfterDeletion(todoList) {
+        this.setState({ todoList }, () => {
+            this._countFinishedTasks();
+        });
     }
 }
 
