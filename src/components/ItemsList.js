@@ -4,7 +4,7 @@ import '../App.css';
 
 const ItemsList = (props) => {
     let todos = props.items;
-    const listItem = props.items.map((item) => {
+    const listItem = todos.map((item) => {
         return (
             <Item
                 item={item}
