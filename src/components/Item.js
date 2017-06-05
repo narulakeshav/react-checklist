@@ -4,9 +4,9 @@ import '../App.css';
 
 class Item extends Component {
     render() {
-        let name = this.props.item.task;
-        let completed = this.props.item.completed;
-        let listClass = (completed) ? 'done' : '';
+        let name = this.props.item.task,
+            completed = this.props.item.completed,
+            listClass = (completed) ? 'done' : '';
         return (
             <li className={listClass}>
                 <div className="ItemDiv" onClick={this._markDone.bind(this)}>
