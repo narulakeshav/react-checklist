@@ -1,4 +1,8 @@
+// Packages
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
+// CSS
 import '../App.css';
 
 class AddItemBox extends Component {
@@ -6,9 +10,13 @@ class AddItemBox extends Component {
         // We use bind(this) to bind the event with the action
         return (
             <div className='AddItemBox'>
-                <input type='text' placeholder='Add a task...' onKeyPress={this.onInputEnter.bind(this)}/>
+                <input
+                    type='text'
+                    placeholder='Add a task...'
+                    onKeyPress={this.onInputEnter.bind(this)}
+                />
             </div>
-        )
+        );
     }
 
     onInputEnter(e) {
@@ -20,6 +28,10 @@ class AddItemBox extends Component {
             e.target.value = '';
         }
     }
+}
+
+AddItemBox.propTypes = {
+    addNewItem: PropTypes.func
 }
 
 export default AddItemBox;

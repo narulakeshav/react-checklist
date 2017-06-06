@@ -7,6 +7,10 @@ import './index.css';
 let getItem = (val) => {
   return JSON.parse(localStorage.getItem(val));
 };
+const props = {
+  todos: getItem('todos'),
+  finished: getItem('finished'),
+  done: getItem('done')
+};
 
-ReactDOM.render(<App todos={getItem('todos')} finished={getItem('finished')}
-                    done={getItem('done')}/>, document.getElementById('app'));
+ReactDOM.render(<App {...props}/>, document.getElementById('app'));

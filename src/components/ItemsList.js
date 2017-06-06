@@ -1,4 +1,8 @@
+// Packages
 import React from 'react';
+import PropTypes from 'prop-types';
+
+// Components and Styles
 import Item from './Item';
 import '../App.css';
 
@@ -11,8 +15,9 @@ const ItemsList = (props) => {
                 key={todos.indexOf(item)}
                 list={todos}
                 completeTask={props.completeTask}
-                updateList={props.updateList} />
-        )
+                updateList={props.updateList}
+            />
+        );
     });
     return (
         <div className="ItemsList">
@@ -20,7 +25,13 @@ const ItemsList = (props) => {
                 {listItem}
             </ul>
         </div>
-    )
+    );
+};
+
+ItemsList.propTypes = {
+  items: PropTypes.array,
+  completeTask: PropTypes.func,
+  updateList: PropTypes.func
 }
 
 export default ItemsList;
