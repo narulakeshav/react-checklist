@@ -122,4 +122,10 @@ App.propTypes = {
   percent: PropTypes.number
 }
 
+App.defaultProps = {
+  todos: [],
+  finished: 0,
+  percent: 0
+}
+
 export default App;
