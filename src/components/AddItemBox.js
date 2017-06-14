@@ -7,7 +7,7 @@ import '../App.css';
 
 class AddItemBox extends Component {
     render() {
-        // We use bind(this) to bind the event with the action
+        // We use bind(this) to bind the function within this component
         return (
             <div className='AddItemBox'>
                 <input
